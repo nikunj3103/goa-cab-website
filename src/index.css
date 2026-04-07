@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Smooth mobile UX */
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+.input {
+  @apply w-full px-4 py-2 rounded-lg border border-gray-300 
+  focus:outline-none focus:ring-2 focus:ring-blue-300 
+  dark:bg-white/10 dark:border-gray-600;
+}
+
+.footer-btn {
+  @apply px-4 py-2 rounded-full border border-black dark:border-white 
+  hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black 
+  transition;
+}
+.input {
+  @apply w-full px-4 py-2 rounded-lg border border-gray-300 
+  focus:outline-none focus:ring-2 focus:ring-blue-300 
+  dark:bg-white/10 dark:border-gray-600;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-in-out;
+}
+@keyframes float {
+  0% { transform: translateY(0px); opacity: 0.5; }
+  50% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(0px); opacity: 0.5; }
+}
+
+.animate-float {
+  animation: float linear infinite;
+}
+:root {
+  --primary: #123E5C;
+  --primary-hover: #0F324A;
+  --primary-light: #1E5A7A;
+
+  --accent: #4FD1C5;
+  --accent-soft: #A7F3D0;
+
+  --bg-main: #EAF3FB;
+  --bg-glass: rgba(255,255,255,0.4);
+  --bg-dark: #0B1E2D;
+
+  --glass: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --blur: blur(16px);
+
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-light: #FFFFFF;
+
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
+  --shadow-premium: 0 20px 60px rgba(18,62,92,0.25);
+}
