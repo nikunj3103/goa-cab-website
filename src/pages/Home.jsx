@@ -32,9 +32,9 @@ const Home = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ✅ WHATSAPP MESSAGE (FIXED ONLY THIS)
-const getWhatsAppLink = () => {
-  const msg = `Hi. I am interested for cab booking! 🚖
+  // ✅ WHATSAPP MESSAGE (UNCHANGED)
+  const getWhatsAppLink = () => {
+    const msg = `Hi. I am interested for cab booking! 🚖
 
 Name: ${form.name || "-"}
 Phone: ${form.phone || "-"}
@@ -50,8 +50,8 @@ Stay: ${form.stay || "-"}
 Pax: ${form.pax || "-"}
 Vehicle: ${form.vehicle || "-"}`;
 
-  return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
-};
+    return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
+  };
 
   // ✅ EMAIL ENQUIRY (UNCHANGED)
   const handleEnquiry = () => {
@@ -90,7 +90,8 @@ Vehicle: ${form.vehicle}`;
   return (
     <div className="min-h-screen px-4 md:px-10 py-6 bg-gradient-to-br from-blue-100 via-white to-blue-200">
 
-      <div className="grid md:grid-cols-2 gap-8 mt-20">
+      {/* MAIN */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-20">
 
         {/* FORM */}
         <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-6 shadow-xl">
@@ -120,24 +121,24 @@ Vehicle: ${form.vehicle}`;
             </select>
 
             {/* BUTTONS */}
-            <div className="flex gap-3 mt-3">
+            <div className="flex flex-col sm:flex-row gap-3 mt-3">
 
               <a
-  href={getWhatsAppLink()}
-  target="_blank"
-  rel="noopener noreferrer"
-  onClick={(e) => {
-    e.preventDefault();
-    window.open(getWhatsAppLink(), "_blank");
-  }}
-  className="w-1/2 text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
->
-  🚖 Book Now
-</a>
+                href={getWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open(getWhatsAppLink(), "_blank");
+                }}
+                className="w-full sm:w-1/2 text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
+              >
+                🚖 Book Now
+              </a>
 
               <button
                 onClick={handleEnquiry}
-                className="w-1/2 bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
+                className="w-full sm:w-1/2 bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
               >
                 Enquire Now
               </button>
@@ -147,7 +148,7 @@ Vehicle: ${form.vehicle}`;
           </div>
         </div>
 
-        {/* PLACES GRID */}
+        {/* GRID */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
 
           {places.map((place, i) => (
@@ -156,7 +157,11 @@ Vehicle: ${form.vehicle}`;
               onClick={() => navigate("/goa-attractions")}
               className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
             >
-              <img src={place.img} className="h-60 w-full object-cover" />
+              <img
+                src={place.img}
+                className="h-44 md:h-60 w-full object-cover"
+                alt={place.name}
+              />
               <div className="absolute bottom-2 left-2 text-white font-semibold text-sm">
                 {place.name}
               </div>
@@ -181,7 +186,7 @@ Vehicle: ${form.vehicle}`;
           shadow-xl
         ">
 
-          <div className="flex justify-between items-center flex-wrap gap-4 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-center md:text-left">
 
             <button
               onClick={() => navigate("/about")}
@@ -197,7 +202,7 @@ Vehicle: ${form.vehicle}`;
               Goa Attractions
             </button>
 
-            <div className="text-right text-xs md:text-sm">
+            <div className="text-center md:text-right text-xs md:text-sm">
               <p>📞 8007090230</p>
               <p>📧 booking@goacabcandolim.com</p>
               <p>📍 Candolim, Goa</p>
