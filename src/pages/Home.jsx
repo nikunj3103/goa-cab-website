@@ -33,25 +33,25 @@ const Home = () => {
   };
 
   // ✅ WHATSAPP MESSAGE (FIXED ONLY THIS)
-  const getWhatsAppLink = () => {
-    const msg = `Hi. I am interested for cab booking! 🚖
+const getWhatsAppLink = () => {
+  const msg = `Hi. I am interested for cab booking! 🚖
 
-Name: ${form.name}
-Phone: ${form.phone}
-Email: ${form.email}
+Name: ${form.name || "-"}
+Phone: ${form.phone || "-"}
+Email: ${form.email || "-"}
 
-From: ${form.fromDate}
-To: ${form.toDate}
+From: ${form.fromDate || "-"}
+To: ${form.toDate || "-"}
 
-Pickup: ${form.pickup}
-Drop: ${form.drop}
+Pickup: ${form.pickup || "-"}
+Drop: ${form.drop || "-"}
 
-Stay: ${form.stay}
-Pax: ${form.pax}
-Vehicle: ${form.vehicle}`;
+Stay: ${form.stay || "-"}
+Pax: ${form.pax || "-"}
+Vehicle: ${form.vehicle || "-"}`;
 
-    return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
-  };
+  return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
+};
 
   // ✅ EMAIL ENQUIRY (UNCHANGED)
   const handleEnquiry = () => {
@@ -123,13 +123,17 @@ Vehicle: ${form.vehicle}`;
             <div className="flex gap-3 mt-3">
 
               <a
-                href={getWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-1/2 text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
-              >
-                🚖 Book Now
-              </a>
+  href={getWhatsAppLink()}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={(e) => {
+    e.preventDefault();
+    window.open(getWhatsAppLink(), "_blank");
+  }}
+  className="w-1/2 text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
+>
+  🚖 Book Now
+</a>
 
               <button
                 onClick={handleEnquiry}

@@ -26,10 +26,10 @@ const GoaAttractions = () => {
   const navigate = useNavigate();
 
   // ✅ UPDATED WHATSAPP NUMBER
-  const getWhatsAppLink = (place) => {
-    const msg = `Hi, I want to book a service to ${place}`;
-    return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
-  };
+const getWhatsAppLink = (place) => {
+  const msg = `Hi. I am interested for cab booking to ${place}! 🚖`;
+  return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
+};
 
   const places = [
     { name: "Baga Beach", img: baga, desc: "Famous for nightlife and water sports." },
