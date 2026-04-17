@@ -120,8 +120,10 @@ const Header = () => {
         </div>
 
         {/* 🧲 MAGNETIC BUTTON */}
-       <a
-  href="https://wa.me/919823771051"
+      <a
+  href={`https://wa.me/918007090230?text=${encodeURIComponent(
+    "Hi. I am interested for cab booking!"
+  )}`}
   target="_blank"
   rel="noopener noreferrer"
   className="
@@ -141,10 +143,9 @@ const Header = () => {
   "
 >
   <span className="relative z-10 flex items-center gap-2">
-<span className="animate-pulse">🚕</span> Book Now
+    <span className="animate-pulse">🚕</span> Book Now
   </span>
 
-  {/* ✨ SHINE EFFECT */}
   <span className="
     absolute inset-0
     bg-gradient-to-r from-white/20 to-transparent

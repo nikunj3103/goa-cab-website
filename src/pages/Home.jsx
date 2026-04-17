@@ -32,9 +32,9 @@ const Home = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ✅ WHATSAPP MESSAGE
+  // ✅ WHATSAPP MESSAGE (FIXED ONLY THIS)
   const getWhatsAppLink = () => {
-    const msg = `Hi, I want to book a cab 🚖
+    const msg = `Hi. I am interested for cab booking! 🚖
 
 Name: ${form.name}
 Phone: ${form.phone}
@@ -53,7 +53,7 @@ Vehicle: ${form.vehicle}`;
     return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
   };
 
-  // ✅ EMAIL ENQUIRY
+  // ✅ EMAIL ENQUIRY (UNCHANGED)
   const handleEnquiry = () => {
     const subject = "Cab Booking Enquiry";
     const body = `Name: ${form.name}
@@ -125,6 +125,7 @@ Vehicle: ${form.vehicle}`;
               <a
                 href={getWhatsAppLink()}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="w-1/2 text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
               >
                 🚖 Book Now
