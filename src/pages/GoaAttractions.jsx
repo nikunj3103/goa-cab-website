@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// ✅ IMPORT IMAGES (MATCH YOUR FILES EXACTLY)
+// ✅ IMAGES
 import baga from "../assets/places/baga.jpg";
 import calangute from "../assets/places/calangute.webp";
 import anjuna from "../assets/places/anjuna.jpg";
@@ -25,13 +25,15 @@ const GoaAttractions = () => {
   const [selected, setSelected] = useState(null);
   const navigate = useNavigate();
 
-  const whatsappLink = (place) =>
-    `https://wa.me/919823771051?text=Hi, I want to book a cab to ${place}`;
+  // ✅ UPDATED WHATSAPP NUMBER
+  const getWhatsAppLink = (place) => {
+    const msg = `Hi, I want to book a service to ${place}`;
+    return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
+  };
 
-  // ✅ SAME DATA, ONLY IMAGES FIXED
   const places = [
     { name: "Baga Beach", img: baga, desc: "Famous for nightlife and water sports." },
-    { name: "Calangute Beach", img: calangute, desc: "Queen of beaches in Goa with golden sands and vibrant energy." },
+    { name: "Calangute Beach", img: calangute, desc: "Queen of beaches in Goa." },
     { name: "Anjuna Beach", img: anjuna, desc: "Popular flea markets." },
     { name: "Vagator Beach", img: vagator, desc: "Cliffside sunset views." },
     { name: "Candolim Beach", img: candolim, desc: "Clean and peaceful beach." },
@@ -57,20 +59,13 @@ const GoaAttractions = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         onClick={() => navigate("/")}
-        className="fixed top-24 left-6 z-50 
-        w-12 h-12 flex items-center justify-center 
-        rounded-full 
-        bg-white/40 backdrop-blur-xl 
-        border border-white/30 
-        shadow-xl 
-        hover:scale-110 transition"
+        className="fixed top-24 left-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-white/40 backdrop-blur-xl border border-white/30 shadow-xl hover:scale-110 transition"
       >
         ←
       </motion.button>
 
       <div className="px-6 py-10 max-w-7xl mx-auto">
 
-        {/* TITLE */}
         <h1 className="text-4xl font-bold text-center mb-12">
           Goa Attractions 🌴
         </h1>
@@ -91,13 +86,7 @@ const GoaAttractions = () => {
                 <img
                   src={place.img}
                   alt={place.name}
-                  loading="lazy"
-                  className="
-                    h-60 w-full object-cover
-                    brightness-95 contrast-110 saturate-110
-                    group-hover:scale-110
-                    transition duration-700
-                  "
+                  className="h-60 w-full object-cover group-hover:scale-110 transition duration-700"
                 />
               </div>
 
@@ -120,39 +109,68 @@ const GoaAttractions = () => {
             >
               <motion.div
                 className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-white/20"
-                initial={{ scale: 0.8, y: 20 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.8, y: 20 }}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.8 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
-                  src={selected?.img}
-                  alt={selected?.name}
+                  src={selected.img}
+                  alt={selected.name}
                   className="w-full h-72 object-cover"
                 />
 
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold mb-2">
-                    {selected?.name}
-                  </h2>
+                  <h2 className="text-2xl font-bold mb-2">{selected.name}</h2>
 
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {selected?.desc}
+                  <p className="text-gray-600 mb-4">
+                    {selected.desc}
                   </p>
 
-                  {/* 🚖 BOOK BUTTON */}
-                  <div
-                    onClick={() => navigate("/")}
-                    className="block text-center bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 hover:scale-105 transition cursor-pointer"
+                  {/* ✅ UPDATED WHATSAPP BUTTON */}
+                  <a
+                    href={getWhatsAppLink(selected.name)}
+                    target="_blank"
+                    className="block text-center bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition"
                   >
-                    🚖 Book Cab to {selected?.name}
-                  </div>
+                    🚖 Book Cab to {selected.name}
+                  </a>
 
                 </div>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* ✅ FOOTER */}
+        <div className="mt-12 flex justify-center">
+          <div className="w-full max-w-4xl bg-gradient-to-r from-[#0B3C5D] via-[#134E6F] to-[#0B3C5D] text-white backdrop-blur-xl border border-white/20 rounded-2xl px-6 py-4 shadow-xl">
+
+            <div className="flex justify-between items-center flex-wrap gap-4 text-sm">
+
+              <button
+                onClick={() => navigate("/about")}
+                className="px-4 py-2 rounded-full border border-white hover:bg-white hover:text-black transition"
+              >
+                About Us
+              </button>
+
+              <button
+                onClick={() => navigate("/goa-attractions")}
+                className="px-4 py-2 rounded-full border border-white hover:bg-white hover:text-black transition"
+              >
+                Goa Attractions
+              </button>
+
+              <div className="text-right text-xs md:text-sm">
+                <p>📞 8007090230</p>
+                <p>📧 booking@goacabcandolim.com</p>
+                <p>📍 Candolim, Goa</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
 
       </div>
 

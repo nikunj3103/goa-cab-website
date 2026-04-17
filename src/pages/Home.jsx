@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
-import Loader from "../components/Loader";
 
-// ✅ IMPORT IMAGES (MATCH YOUR FILE TYPES EXACTLY)
+// ✅ IMAGES
 import baga from "../assets/places/baga.jpg";
 import calangute from "../assets/places/calangute.webp";
 import aguada from "../assets/places/aguada.jpg";
@@ -17,31 +15,66 @@ import candolim from "../assets/places/candolim.jpg";
 const Home = () => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
-  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    fromDate: "",
+    toDate: "",
+    stay: "",
+    pickup: "",
+    drop: "",
+    pax: "",
+    vehicle: "",
+  });
 
-  const quotes = [
-    "Explore Goa with comfort 🚕",
-    "Your journey, our priority 🌴",
-    "Reliable rides across Goa",
-    "Safe & smooth travel experience"
-  ];
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+  // ✅ WHATSAPP MESSAGE
+  const getWhatsAppLink = () => {
+    const msg = `Hi, I want to book a cab 🚖
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuoteIndex((prev) => (prev + 1) % quotes.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+Name: ${form.name}
+Phone: ${form.phone}
+Email: ${form.email}
 
-  if (loading) return <Loader />;
+From: ${form.fromDate}
+To: ${form.toDate}
 
-  // ✅ PLACES DATA
+Pickup: ${form.pickup}
+Drop: ${form.drop}
+
+Stay: ${form.stay}
+Pax: ${form.pax}
+Vehicle: ${form.vehicle}`;
+
+    return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
+  };
+
+  // ✅ EMAIL ENQUIRY
+  const handleEnquiry = () => {
+    const subject = "Cab Booking Enquiry";
+    const body = `Name: ${form.name}
+Phone: ${form.phone}
+Email: ${form.email}
+
+From: ${form.fromDate}
+To: ${form.toDate}
+
+Pickup: ${form.pickup}
+Drop: ${form.drop}
+
+Stay: ${form.stay}
+Pax: ${form.pax}
+Vehicle: ${form.vehicle}`;
+
+    window.location.href = `mailto:booking@goacabcandolim.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   const places = [
     { name: "Baga Beach", img: baga },
     { name: "Calangute Beach", img: calangute },
@@ -51,48 +84,62 @@ const Home = () => {
     { name: "Dudhsagar Falls", img: dudhsagar },
     { name: "Chapora Fort", img: chapora },
     { name: "Colva Beach", img: colva },
-    { name: "Candolim Beach", img: candolim }
+    { name: "Candolim Beach", img: candolim },
   ];
 
   return (
-    <div className="relative min-h-screen px-4 md:px-10 py-6 
-    bg-gradient-to-br from-blue-100 via-white to-blue-200 
-    dark:from-black dark:via-gray-900 dark:to-black overflow-hidden animate-fadeIn">
+    <div className="min-h-screen px-4 md:px-10 py-6 bg-gradient-to-br from-blue-100 via-white to-blue-200">
 
-      {/* BACKGROUND GLOW */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute w-72 h-72 bg-blue-300 rounded-full blur-3xl opacity-30 top-10 left-10"></div>
-        <div className="absolute w-72 h-72 bg-teal-300 rounded-full blur-3xl opacity-30 bottom-10 right-10"></div>
-      </div>
-
-      <div className="mt-20"></div>
-
-      {/* MAIN GRID */}
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-8 mt-20">
 
         {/* FORM */}
-        <div className="bg-white/60 dark:bg-white/10 backdrop-blur-xl border border-white/30 shadow-xl rounded-2xl p-6">
+        <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-6 shadow-xl">
 
           <h2 className="text-xl font-semibold mb-4">Book Your Ride</h2>
 
           <div className="space-y-3">
-            <input placeholder="Name" className="input" />
-            <input placeholder="Contact Number" className="input" />
-            <input placeholder="Email ID" className="input" />
-            <input type="date" className="input" />
-            <input type="date" className="input" />
-            <input placeholder="Stay Address in Goa" className="input" />
-            <input placeholder="Pickup Location" className="input" />
-            <input placeholder="Drop Location" className="input" />
 
-            <a
-              href="https://wa.me/919823771051"
-              className="block text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
-            >
-              Book Now
-            </a>
+            <input name="name" placeholder="Name" className="input" onChange={handleChange} />
+            <input name="phone" placeholder="Contact Number" className="input" onChange={handleChange} />
+            <input name="email" placeholder="Email ID" className="input" onChange={handleChange} />
+
+            <input name="fromDate" type="date" className="input" onChange={handleChange} />
+            <input name="toDate" type="date" className="input" onChange={handleChange} />
+
+            <input name="stay" placeholder="Stay Address in Goa" className="input" onChange={handleChange} />
+            <input name="pickup" placeholder="Pickup Location" className="input" onChange={handleChange} />
+            <input name="drop" placeholder="Drop Location" className="input" onChange={handleChange} />
+
+            <input name="pax" type="number" placeholder="Number of Pax" className="input" onChange={handleChange} />
+
+            <select name="vehicle" className="input" onChange={handleChange}>
+              <option value="">Select Vehicle Type</option>
+              <option>4 Seater</option>
+              <option>6 Seater</option>
+              <option>Caravan</option>
+            </select>
+
+            {/* BUTTONS */}
+            <div className="flex gap-3 mt-3">
+
+              <a
+                href={getWhatsAppLink()}
+                target="_blank"
+                className="w-1/2 text-center bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
+              >
+                🚖 Book Now
+              </a>
+
+              <button
+                onClick={handleEnquiry}
+                className="w-1/2 bg-[#0B3C5D] text-white py-3 rounded-full hover:bg-[#072B44] transition"
+              >
+                Enquire Now
+              </button>
+
+            </div>
+
           </div>
-
         </div>
 
         {/* PLACES GRID */}
@@ -102,26 +149,12 @@ const Home = () => {
             <div
               key={i}
               onClick={() => navigate("/goa-attractions")}
-              className="relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition group cursor-pointer"
+              className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
             >
-              <img
-                src={place.img}
-                alt={place.name}
-                loading="lazy"
-                className="
-                  h-60 w-full object-cover
-                  brightness-95 contrast-110 saturate-110
-                  group-hover:scale-110
-                  transition duration-700
-                "
-              />
-
-              {/* PREMIUM OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-              <p className="absolute bottom-2 left-2 text-white text-xs font-semibold">
+              <img src={place.img} className="h-60 w-full object-cover" />
+              <div className="absolute bottom-2 left-2 text-white font-semibold text-sm">
                 {place.name}
-              </p>
+              </div>
             </div>
           ))}
 
@@ -160,8 +193,8 @@ const Home = () => {
             </button>
 
             <div className="text-right text-xs md:text-sm">
-              <p>📞 9823771051</p>
-              <p>📧 info@yourdomain.com</p>
+              <p>📞 8007090230</p>
+              <p>📧 booking@goacabcandolim.com</p>
               <p>📍 Candolim, Goa</p>
             </div>
 
