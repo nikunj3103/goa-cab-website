@@ -99,8 +99,7 @@ Vehicle: ${form.vehicle}`;
   return (
     <div className="min-h-screen w-full px-2 sm:px-4 md:px-10 py-6 bg-gradient-to-br from-blue-100 via-white to-blue-200">
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-20 w-full">
-
+<div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-8 mt-20 w-full">
         {/* FORM */}
         <div className="w-full bg-white/60 backdrop-blur-xl rounded-2xl p-4 md:p-6 shadow-xl">
 
@@ -157,8 +156,7 @@ Vehicle: ${form.vehicle}`;
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full">
-
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full">
           {places.map((place, i) => (
             <div
               key={i}
