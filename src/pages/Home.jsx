@@ -39,7 +39,6 @@ const Home = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ✅ WHATSAPP (UNCHANGED + DESTINATION ADDED)
   const getWhatsAppLink = () => {
     const msg = `Hi. I am interested for cab booking! 🚖
 
@@ -62,7 +61,6 @@ Vehicle: ${form.vehicle || "-"}`;
     return `https://wa.me/918007090230?text=${encodeURIComponent(msg)}`;
   };
 
-  // ✅ EMAIL (UNCHANGED)
   const handleEnquiry = () => {
     const subject = "Cab Booking Enquiry";
     const body = `Name: ${form.name}
@@ -79,9 +77,7 @@ Stay: ${form.stay}
 Pax: ${form.pax}
 Vehicle: ${form.vehicle}`;
 
-    window.location.href = `mailto:booking@goacabcandolim.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:booking@goacabcandolim.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const places = [
@@ -97,9 +93,10 @@ Vehicle: ${form.vehicle}`;
   ];
 
   return (
-    <div className="min-h-screen w-full px-2 sm:px-4 md:px-10 py-6 bg-gradient-to-br from-blue-100 via-white to-blue-200">
+    <div className="min-h-screen w-screen max-w-none px-2 sm:px-4 md:px-10 py-6 bg-gradient-to-br from-blue-100 via-white to-blue-200 overflow-x-hidden">
 
-<div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-8 mt-20 w-full">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-8 mt-16 md:mt-20 w-full">
+
         {/* FORM */}
         <div className="w-full bg-white/60 backdrop-blur-xl rounded-2xl p-4 md:p-6 shadow-xl">
 
@@ -127,7 +124,6 @@ Vehicle: ${form.vehicle}`;
               <option>Caravan</option>
             </select>
 
-            {/* BUTTONS */}
             <div className="flex flex-col sm:flex-row gap-3 mt-3">
 
               <a
@@ -156,7 +152,7 @@ Vehicle: ${form.vehicle}`;
         </div>
 
         {/* GRID */}
-<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full">
           {places.map((place, i) => (
             <div
               key={i}
@@ -177,24 +173,13 @@ Vehicle: ${form.vehicle}`;
               </div>
             </div>
           ))}
-
         </div>
 
       </div>
 
       {/* FOOTER */}
       <div className="mt-8 md:mt-12 flex justify-center px-2 sm:px-0">
-
-        <div className="
-          w-full max-w-4xl
-          bg-gradient-to-r from-[#0B3C5D] via-[#134E6F] to-[#0B3C5D]
-          text-white
-          backdrop-blur-xl
-          border border-white/20
-          rounded-2xl
-          px-6 py-4
-          shadow-xl
-        ">
+        <div className="w-full max-w-4xl bg-gradient-to-r from-[#0B3C5D] via-[#134E6F] to-[#0B3C5D] text-white backdrop-blur-xl border border-white/20 rounded-2xl px-6 py-4 shadow-xl">
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-center md:text-left">
 
@@ -221,7 +206,6 @@ Vehicle: ${form.vehicle}`;
           </div>
 
         </div>
-
       </div>
 
     </div>
