@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import car1 from "../assets/car1.jpg";
 import car2 from "../assets/car2.jpg";
 import car3 from "../assets/car3.jpg";
+import poster1 from "../assets/poster1.jpg";
+import poster2 from "../assets/poster2.jpg";
+import poster3 from "../assets/poster3.jpg";
 
 const About = () => {
   const images = [car1, car2, car3];
@@ -160,7 +163,38 @@ const About = () => {
         </motion.div>
 
       </div>
+      {/* 🔥 POSTERS SECTION (ADDED - NO FEATURE CHANGE) */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 pb-16">
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition">
+            <img
+              src={poster1}
+              alt="Goa Tour Poster"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition">
+            <img
+              src={poster2}
+              alt="Goa Taxi Poster"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition">
+            <img
+              src={poster3}
+              alt="Cab Service Poster"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+        </div>
+
+      </div>
       {/* FLOATING BUTTON */}
       {/* <a
         href="https://wa.me/919823771051"
