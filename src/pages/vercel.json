@@ -1,0 +1,6 @@
+{
+  "routes": [
+    { "src": "/about", "headers": { "Location": "/" }, "status": 302 },
+    { "src": "/goa-attractions", "headers": { "Location": "/" }, "status": 302 }
+  ]
+}
